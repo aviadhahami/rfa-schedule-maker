@@ -1,0 +1,156 @@
+[
+  {
+    "name": "H1-MW40 & G",
+    "judgesCount": 11,
+    "isJuniors": false
+  },
+  {
+    "name": "H2 MW 35",
+    "judgesCount": 11,
+    "isJuniors": false
+  },
+  {
+    "name": "H3 MM 40",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "H4 MM 35",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "B14",
+    "judgesCount": 12,
+    "isJuniors": true
+  },
+  {
+    "name": "B16",
+    "judgesCount": 12,
+    "isJuniors": true
+  },
+  {
+    "name": "M#1",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "M#2",
+    "judgesCount": "12",
+    "isJuniors": false
+  },
+  {
+    "name": "M#3",
+    "judgesCount": "12",
+    "isJuniors": false
+  },
+  {
+    "name": "Teams E#4",
+    "judgesCount": "30",
+    "isJuniors": false
+  },
+  {
+    "name": "W#1",
+    "judgesCount": 11,
+    "isJuniors": false
+  },
+  {
+    "name": "W#2",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "W#3",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "MW40 and G",
+    "judgesCount": 11,
+    "isJuniors": false
+  },
+  {
+    "name": "MW 35",
+    "judgesCount": 11,
+    "isJuniors": false
+  },
+  {
+    "name": "MM40",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "MM35",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "B14",
+    "judgesCount": 12,
+    "isJuniors": true
+  },
+  {
+    "name": "B16",
+    "judgesCount": 12,
+    "isJuniors": true
+  },
+  {
+    "name": "(14:17) M",
+    "judgesCount": 36,
+    "isJuniors": false
+  },  {
+  "name": "(14:35) W",
+  "judgesCount": 36,
+  "isJuniors": false
+},
+  {
+    "name": "Teams E5",
+    "judgesCount": "20",
+    "isJuniors": false
+  },
+  {
+    "name": "(F)MW40 and G",
+    "judgesCount": 11,
+    "isJuniors": false
+  },
+  {
+    "name": "(F)MW 35",
+    "judgesCount": 11,
+    "isJuniors": false
+  },
+  {
+    "name": "(F)MM all",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "(F)Boys all",
+    "judgesCount": 12,
+    "isJuniors": true
+  },
+  {
+    "name": "(F)(16:40)Teams",
+    "judgesCount": 10,
+    "isJuniors": false
+  },
+  {
+    "name": "(F)M#1",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "(F)W#1",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "(F)M#2",
+    "judgesCount": 12,
+    "isJuniors": false
+  },
+  {
+    "name": "(F)(17:39)W#2",
+    "judgesCount": 12,
+    "isJuniors": false
+  }
+]

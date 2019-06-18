@@ -18,4 +18,4 @@ module.exports = class Heat{
   get isFull(){
     return this.judgesCount === this.judges.length;
   }
-}
+};

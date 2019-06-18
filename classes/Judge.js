@@ -6,11 +6,11 @@ module.exports = class Judge{
     this.langs = langs;
     this.isHead = isHead;
     this.judgedLast = false;
-    this.events = [];
+    this.heats = [];
   }
 
 
   get judgedTotal(){
-    return this.events.length;
+    return this.heats.length;
   }
 }
