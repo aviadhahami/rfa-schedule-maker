@@ -31,9 +31,11 @@ function getJudge(heat){
 	const {isJuniors, floorJudge, headJudge} = heat;
 
 	// Juniors restriction
-	const updatedJudges = judges.filter(j=> isJuniors ? !j.isJunior : true);
+	const tJudges = judges
+		.filter(({judgedLast})=>!judgedLast) // Last judge
+		.filter(({isJunior})=> isJuniors ? !isJunior : true) // Juniors
 
-return updatedJudges[0]
+	return tJudges[0];
 }
 
 const DEBUG = false;
@@ -55,9 +57,8 @@ for(let i = 0; i < heats.length; i++){
 	selectedJudges.forEach(j=>{
 		const localJ = find(judges, (cj)=>cj.name === j.name);
 		localJ.judgedLast = true;
-	})
-}
+	});}
 
 
-console.log(JSON.stringify(judges, null, 4));
-console.log(JSON.stringify(heats.filter(({name})=> name.includes('B14')), null, 4));
+// console.log(JSON.stringify(judges, null, 4));
+// console.log(JSON.stringify(heats.filter(({name})=> name.includes('B14')), null, 4));
