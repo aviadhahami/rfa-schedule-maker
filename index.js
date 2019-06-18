@@ -26,7 +26,13 @@ prepareJudgesAndHeats();
 console.log(`calculating for ${heats.length} heats with ${judges.length} judges`);
 
 
-function getJudge(language = [], isJuniors = false){
+function getJudge(heat){
+	const {isJuniors, floorJudge, headJudge} = heat;
+
+	// Juniors restriction
+	const updatedJudges = judges.filter(j=> isJuniors ? j.isJunior : true);
+
+
 	return judges[0];
 }
 
@@ -36,7 +42,7 @@ for(let i = 0; i < heats.length; i++){
 	console.log(i);
 	console.log(heat.name);
 	while(!heat.isFull && !DEBUG){
-		const judge = getJudge(heat.language, heat.isJuniors);
+		const judge = getJudge(heat);
 		heat.judges.push(judge.name);
 		judge.heats.push(heat.details)
 	}
