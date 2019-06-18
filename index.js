@@ -75,7 +75,7 @@ for(let i = 0; i < heats.length; i++){
 				heat.headJudge = judge.name;
 			}else if(!heat.floorJudge){
 				heat.floorJudge = judge.name;
-				return;
+				continue;
 			}
 		}
 
@@ -101,5 +101,4 @@ for(let i = 0; i < heats.length; i++){
 
 // console.log(JSON.stringify(judges, null, 4));
 // console.log();
-
-fs.writeFileSync('./heats.json',JSON.stringify(heats.slice(0,2), null, 4));
+fs.writeFileSync('heats.results.json',JSON.stringify(heats.slice(0,5), null, 4));
