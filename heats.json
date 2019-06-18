@@ -36,17 +36,17 @@
   },
   {
     "name": "M#2",
-    "judgesCount": "12",
+    "judgesCount": 12,
     "isJuniors": false
   },
   {
     "name": "M#3",
-    "judgesCount": "12",
+    "judgesCount": 12,
     "isJuniors": false
   },
   {
     "name": "Teams E#4",
-    "judgesCount": "30",
+    "judgesCount": 30,
     "isJuniors": false
   },
   {
@@ -105,7 +105,7 @@
 },
   {
     "name": "Teams E5",
-    "judgesCount": "20",
+    "judgesCount": 20,
     "isJuniors": false
   },
   {

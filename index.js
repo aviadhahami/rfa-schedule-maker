@@ -1,3 +1,4 @@
+const cloneDeep = require('lodash/cloneDeep');
 const Judge = require('./classes/Judge');
 const Heat = require('./classes/Heat');
 
@@ -17,7 +18,30 @@ function prepareJudgesAndHeats(){
 	heats = heatsSource.map(({name, judgesCount, isJuniors})=>new Heat({name, judgesCount, isJuniors}))
 }
 
+function getRemainingHeatsCount(){
+	return heats.filter(({isFull})=>!isFull).length;
+}
+
 prepareJudgesAndHeats();
 console.log(`calculating for ${heats.length} heats with ${judges.length} judges`);
 
 
+function getJudge(language = [], isJuniors = false){
+	return judges[0];
+}
+
+const DEBUG = false;
+for(let i = 0; i < heats.length; i++){
+	const heat = heats[i];
+	console.log(i);
+	console.log(heat.name);
+	while(!heat.isFull && !DEBUG){
+		const judge = getJudge(heat.language, heat.isJuniors);
+		heat.judges.push(judge.name);
+		judge.heats.push(heat.details)
+	}
+}
+
+
+console.log(JSON.stringify(judges, null, 4));
+console.log(JSON.stringify(heats, null, 4));
