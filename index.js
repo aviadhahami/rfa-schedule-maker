@@ -1,4 +1,5 @@
 const cloneDeep = require('lodash/cloneDeep');
+const find = require('lodash/find');
 const Judge = require('./classes/Judge');
 const Heat = require('./classes/Heat');
 
@@ -30,10 +31,9 @@ function getJudge(heat){
 	const {isJuniors, floorJudge, headJudge} = heat;
 
 	// Juniors restriction
-	const updatedJudges = judges.filter(j=> isJuniors ? j.isJunior : true);
+	const updatedJudges = judges.filter(j=> isJuniors ? !j.isJunior : true);
 
-
-	return judges[0];
+return updatedJudges[0]
 }
 
 const DEBUG = false;
@@ -41,13 +41,23 @@ for(let i = 0; i < heats.length; i++){
 	const heat = heats[i];
 	console.log(i);
 	console.log(heat.name);
+	const selectedJudges = [];
 	while(!heat.isFull && !DEBUG){
 		const judge = getJudge(heat);
+
 		heat.judges.push(judge.name);
-		judge.heats.push(heat.details)
+		judge.heats.push(heat.details);
+		selectedJudges.push(judge);
 	}
+
+	// Update is judged last
+	judges.forEach(j=>j.judgedLast = false);
+	selectedJudges.forEach(j=>{
+		const localJ = find(judges, (cj)=>cj.name === j.name);
+		localJ.judgedLast = true;
+	})
 }
 
 
 console.log(JSON.stringify(judges, null, 4));
-console.log(JSON.stringify(heats, null, 4));
+console.log(JSON.stringify(heats.filter(({name})=> name.includes('B14')), null, 4));
