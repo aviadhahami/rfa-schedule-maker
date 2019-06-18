@@ -58,14 +58,16 @@ for(let i = 0; i < heats.length; i++){
 	while(!heat.isFull && !DEBUG){
 		const judge = getJudge(heat);
 
-		if(judge.isHead && !heat.floorJudge){
+		if(judge.isHead && !heat.headJudge){
 			heat.headJudge = judge.name
-		}else if(judge.isHead && heat.headJudge && !heat.floorJudge){
+		}
+		if(judge.isHead && heat.headJudge && !heat.floorJudge){
 			heat.floorJudge = judge.name
 		}
 
 		heat.judges.push(judge.name);
 		judge.heats.push(heat.details);
+		judge.judgedLast = true;
 		selectedJudges.push(judge);
 	}
 
