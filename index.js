@@ -22,22 +22,28 @@ function prepareJudgesAndHeats(){
 function getRemainingHeatsCount(){
 	return heats.filter(({isFull})=>!isFull).length;
 }
-
 prepareJudgesAndHeats();
 console.log(`calculating for ${heats.length} heats with ${judges.length} judges`);
 const isJudgedLast = ({judgedLast})=>!judgedLast;
 const isHead = ({isHead})=> isHead;
 const juniorsFilterGenerator = (isJuniors)=> ({isJunior})=> isJuniors ? !isJunior : true;
-
+const getRandom = arr => arr[Math.floor(Math.random() * (arr.length))];
 
 function getJudge(heat){
 	const {isJuniors, floorJudge, headJudge} = heat;
 
 	const isJuniorsFilter = juniorsFilterGenerator(isJuniors);
 	if(!headJudge || !floorJudge){
-		return judges
+		const neo = judges
 			.filter(isHead)
-			.filter(isJudgedLast)[0]
+			.filter(isJudgedLast)[0];
+		if (!neo){
+			const random = getRandom(judges.filter(isHead));
+			console.log({random});
+			return random;
+		}
+		console.log(neo.name);
+		return neo;
 	}
 
 	// Juniors restriction
@@ -58,12 +64,18 @@ for(let i = 0; i < heats.length; i++){
 	while(!heat.isFull && !DEBUG){
 		const judge = getJudge(heat);
 
-		if(judge.isHead && !heat.headJudge){
-			heat.headJudge = judge.name
+		if(judge.isHead){
+			if(judge.isHead && !heat.headJudge){
+				heat.headJudge = judge.name
+			}
+
+			if(judge.isHead && heat.headJudge && !heat.floorJudge){
+				heat.floorJudge = judge.name
+			}
+		}else{
+
 		}
-		if(judge.isHead && heat.headJudge && !heat.floorJudge){
-			heat.floorJudge = judge.name
-		}
+
 
 		heat.judges.push(judge.name);
 		judge.heats.push(heat.details);
@@ -76,7 +88,8 @@ for(let i = 0; i < heats.length; i++){
 	selectedJudges.forEach(j=>{
 		const localJ = find(judges, (cj)=>cj.name === j.name);
 		localJ.judgedLast = true;
-	});}
+	});
+}
 
 
 // console.log(JSON.stringify(judges, null, 4));
