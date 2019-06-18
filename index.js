@@ -1,4 +1,6 @@
+const fs = require('fs');
 const cloneDeep = require('lodash/cloneDeep');
+const sortBy = require('lodash/sortBy');
 const find = require('lodash/find');
 const Judge = require('./classes/Judge');
 const Heat = require('./classes/Heat');
@@ -18,10 +20,6 @@ function prepareJudgesAndHeats(){
 	const heatsSource = require('./heats.json');
 	heats = heatsSource.map(({name, judgesCount, isJuniors})=>new Heat({name, judgesCount, isJuniors}))
 }
-
-function getRemainingHeatsCount(){
-	return heats.filter(({isFull})=>!isFull).length;
-}
 prepareJudgesAndHeats();
 console.log(`calculating for ${heats.length} heats with ${judges.length} judges`);
 const isJudgedLast = ({judgedLast})=>!judgedLast;
@@ -39,48 +37,53 @@ function getJudge(heat){
 			.filter(isJudgedLast)[0];
 		if (!neo){
 			const random = getRandom(judges.filter(isHead));
-			console.log({random});
+			// console.log('RAND', random.name);
 			return random;
 		}
-		console.log(neo.name);
+		// console.log(neo.name);
 		return neo;
 	}
 
 	// Juniors restriction
-	const tJudges = judges
+	const tJudge = judges
 		.filter(j=>!isHead(j))
 		.filter(isJudgedLast) // Last judge
-		.filter(isJuniorsFilter); // Juniors
+		.filter(isJuniorsFilter)[0]; // Juniors
 
-	return tJudges[0];
+	if(!tJudge){
+		const random = getRandom(judges);
+		// console.log('RAND', random.name);
+		return random;
+	}
+	return tJudge;
 }
 
 const DEBUG = false;
 for(let i = 0; i < heats.length; i++){
 	const heat = heats[i];
-	console.log(i);
-	console.log(heat.name);
-	const selectedJudges = [];
+	let selectedJudges = [];
 	while(!heat.isFull && !DEBUG){
 		const judge = getJudge(heat);
 
-		if(judge.isHead){
-			if(judge.isHead && !heat.headJudge){
-				heat.headJudge = judge.name
-			}
-
-			if(judge.isHead && heat.headJudge && !heat.floorJudge){
-				heat.floorJudge = judge.name
-			}
-		}else{
-
+		if(heat.judges.map(j=>j.name).includes(judge.name)){
+			continue;
 		}
 
+		judge.judgedLast = true;
+		if(judge.isHead){
+			if(!heat.headJudge){
+				heat.headJudge = judge.name;
+			}else if(!heat.floorJudge){
+				heat.floorJudge = judge.name;
+				return;
+			}
+		}
 
 		heat.judges.push(judge.name);
 		judge.heats.push(heat.details);
-		judge.judgedLast = true;
+		judge.totalHeats++;
 		selectedJudges.push(judge);
+		judges = sortBy(judges, 'totalHeats', 'desc');
 	}
 
 	// Update is judged last
@@ -88,9 +91,15 @@ for(let i = 0; i < heats.length; i++){
 	selectedJudges.forEach(j=>{
 		const localJ = find(judges, (cj)=>cj.name === j.name);
 		localJ.judgedLast = true;
+		// console.log('updated',localJ.name);
 	});
+
+	selectedJudges = [];
 }
 
 
+
 // console.log(JSON.stringify(judges, null, 4));
-console.log(JSON.stringify(heats.slice(0,2), null, 4));
+// console.log();
+
+fs.writeFileSync('./heats.json',JSON.stringify(heats.slice(0,2), null, 4));

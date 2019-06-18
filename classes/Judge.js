@@ -7,6 +7,7 @@ module.exports = class Judge{
     this.isHead = isHead;
     this.judgedLast = false;
     this.heats = [];
+    this.totalHeats = 0;
   }
 
 
