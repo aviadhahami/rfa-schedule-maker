@@ -30,7 +30,7 @@ const getRandom = arr => arr[Math.floor(Math.random() * (arr.length))];
 const getMinimums = arr => {
 	const sorted = sortBy(arr, 'totalHeats');
 	const min = (sorted[0] || {}).totalHeats || 0;
-	console.log(min);
+	// console.log(min);
 	return arr.filter(k=>k.totalHeats === min);
 };
 
@@ -66,7 +66,9 @@ for(let i = 0; i < heats.length; i++){
 	while(!heat.isFull && !DEBUG){
 		const judge = getJudge(heat);
 
-		if(heat.judges.map(j=>j.name).includes(judge.name)){
+		// console.log(heat.judges);
+		if(heat.judges.map(j=>j.toLowerCase()).includes(judge.name.toLowerCase())){
+			// console.log('dup');
 			continue;
 		}
 
