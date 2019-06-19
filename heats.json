@@ -67,7 +67,7 @@
   {
     "name": "MW40 and G",
     "judgesCount": 11,
-    "isJuniors": false
+    "isJuniors": true
   },
   {
     "name": "MW 35",
@@ -111,7 +111,7 @@
   {
     "name": "(F)MW40 and G",
     "judgesCount": 11,
-    "isJuniors": false
+    "isJuniors": true
   },
   {
     "name": "(F)MW 35",

@@ -27,34 +27,39 @@ const isHead = ({isHead})=> isHead;
 const juniorsFilterGenerator = (isJuniors)=> ({isJunior})=> isJuniors ? !isJunior : true;
 const getRandom = arr => arr[Math.floor(Math.random() * (arr.length))];
 
+const getMinimums = arr => {
+	const sorted = sortBy(arr, 'totalHeats');
+	const min = (sorted[0] || {}).totalHeats || 0;
+	console.log(min);
+	return arr.filter(k=>k.totalHeats === min);
+};
+
 function getJudge(heat){
 	const {isJuniors, floorJudge, headJudge} = heat;
 
 	const isJuniorsFilter = juniorsFilterGenerator(isJuniors);
 	if(!headJudge || !floorJudge){
-		const neo = judges
-			.filter(isHead)
-			.filter(isJudgedLast)[0];
-		if (!neo){
-			return getRandom(judges.filter(isHead));
-		}
-		return neo;
+		return getRandom(
+			getMinimums(judges
+				.filter(isHead)
+				.filter(isJudgedLast))) || getRandom(judges.filter(isHead));
 	}
 
-	// Juniors restriction
-	const tJudge = judges
-		.filter(j=>!isHead(j))
-		.filter(isJudgedLast) // Last judge
-		.filter(isJuniorsFilter)[0]; // Juniors
+	// Restrictions, assuming head judge chosen
+	const tempList =
+		getRandom(
+			getMinimums(
+				judges
+					.filter(j=>!isHead(j))
+					.filter(isJudgedLast) // Last judge
+					.filter(isJuniorsFilter)
+			));
 
-	if(!tJudge){
-		return getRandom(judges);
-	}
-
-	return tJudge;
+	return tempList || getRandom(judges); // Juniors
 }
 
 const DEBUG = false;
+
 for(let i = 0; i < heats.length; i++){
 	const heat = heats[i];
 	let selectedJudges = [];

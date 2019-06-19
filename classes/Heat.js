@@ -1,5 +1,5 @@
 module.exports = class Heat{
-  constructor({name, time, judgesCount, isJuniors = false, langs=[]}){
+  constructor({name, time = 0, judgesCount, isJuniors = false, langs=[]}){
     this.isJuniors = isJuniors
     this.name = name;
     this.time = time;
