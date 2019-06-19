@@ -50,10 +50,11 @@ function getJudge(heat){
 		getRandom(
 			getMinimums(
 				judges
-					.filter(j=>!isHead(j))
+				// .filter(j=>!isHead(j))
 					.filter(isJudgedLast) // Last judge
 					.filter(isJuniorsFilter)
-			));
+			)
+		);
 
 	return tempList || getRandom(judges); // Juniors
 }
