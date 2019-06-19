@@ -98,7 +98,7 @@ for(let i = 0; i < heats.length; i++){
 }
 
 
-
 // console.log(JSON.stringify(judges, null, 4));
 // console.log();
-fs.writeFileSync('heats.results.json',JSON.stringify(heats.slice(0,5), null, 4));
+fs.writeFileSync('./dist/heats.results.json',JSON.stringify(heats, null, 4));
+fs.writeFileSync('./dist/judges.results.json',JSON.stringify(judges, null, 4));
