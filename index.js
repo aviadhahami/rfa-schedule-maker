@@ -36,11 +36,8 @@ function getJudge(heat){
 			.filter(isHead)
 			.filter(isJudgedLast)[0];
 		if (!neo){
-			const random = getRandom(judges.filter(isHead));
-			// console.log('RAND', random.name);
-			return random;
+			return getRandom(judges.filter(isHead));
 		}
-		// console.log(neo.name);
 		return neo;
 	}
 
@@ -51,10 +48,9 @@ function getJudge(heat){
 		.filter(isJuniorsFilter)[0]; // Juniors
 
 	if(!tJudge){
-		const random = getRandom(judges);
-		// console.log('RAND', random.name);
-		return random;
+		return getRandom(judges);
 	}
+
 	return tJudge;
 }
 
