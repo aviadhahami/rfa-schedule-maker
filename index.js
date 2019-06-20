@@ -48,7 +48,7 @@ function getJudge(heat){
 	const {isJuniors, floorJudges, headJudge, allowBadJudges} = heat;
 	const badJudgesGetter = getBadJudgesFilterGenerator(allowBadJudges);
 	const removeJuniors = removeJuniorsFilterGenerator(isJuniors);
-	const badJudgesRemover = removeBadJudgesFilterGenerator(allowBadJudges);
+	const removeBadJudges = removeBadJudgesFilterGenerator(allowBadJudges);
 
 	if(heat.allowBadJudges){
 		return getRandom(
@@ -66,6 +66,7 @@ function getJudge(heat){
 		return getRandom(
 			getMinimums(judges
 				.filter(isHead)
+				.filter(removeBadJudges)
 				.filter(isJudgedLast))) || getRandom(judges.filter(isHead));
 	}
 
@@ -75,6 +76,7 @@ function getJudge(heat){
 			getMinimums(
 				judges
 				// .filter(j=>!isHead(j))
+					.filter(removeBadJudges)
 					.filter(isJudgedLast) // Last judge
 					.filter(removeJuniors)
 			)
