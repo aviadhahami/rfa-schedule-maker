@@ -6,6 +6,8 @@ const Judge = require('./classes/Judge');
 const Heat = require('./classes/Heat');
 
 const HEAD_JUDGES = ['aviad', 'aviram', 'eliraz', 'idan', 'lee-he','ohad'];
+const BAD_JUDGES = ['roni','shaked','shay','IdoJr'];
+
 let judges = [];
 let heats = [];
 function prepareJudgesAndHeats(){
