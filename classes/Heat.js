@@ -1,5 +1,5 @@
 module.exports = class Heat{
-	constructor({name, time = 0, floorJudgesCount = 2, allowBadJudge = false, judgesCount, isJuniors = false, langs=[]}){
+	constructor({name, time = 0, floorJudgesCount = 2, allowBadJudges = false, judgesCount, isJuniors = false, langs=[]}){
 		this.isJuniors = isJuniors;
 		this.name = name;
 		this.time = time;
@@ -9,6 +9,7 @@ module.exports = class Heat{
 		this.headJudge = undefined;
 		this.floorJudges = [];
 		this.floorJudgesCount = floorJudgesCount;
+		this.allowBadJudges = allowBadJudges;
 	}
 
 

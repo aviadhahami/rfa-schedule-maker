@@ -3,7 +3,7 @@
     "name": "H1-MW40 & G",
     "judgesCount": 8,
     "floorJudgesCount": 1,
-    "allowBadJudge": true,
+    "allowBadJudges": true,
     "isJuniors": true
   },
   {
@@ -21,7 +21,7 @@
     "judgesCount": 12,
     "isJuniors": false,
     "floorJudgesCount": 1,
-    "allowBadJudge": true
+    "allowBadJudges": true
   },
   {
     "name": "B14",
@@ -57,7 +57,7 @@
     "judgesCount": 30,
     "isJuniors": false,
     "floorJudgesCount": 1,
-    "allowBadJudge": true
+    "allowBadJudges": true
   },
   {
     "name": "W#1",
@@ -84,7 +84,7 @@
     "judgesCount": 11,
     "isJuniors": false,
     "floorJudgesCount": 1,
-    "allowBadJudge": true
+    "allowBadJudges": true
   },
   {
     "name": "MM40",
@@ -96,7 +96,7 @@
     "judgesCount": 12,
     "isJuniors": false,
     "floorJudgesCount": 1,
-    "allowBadJudge": true
+    "allowBadJudges": true
   },
   {
     "name": "B14",
@@ -123,7 +123,7 @@
     "judgesCount": 20,
     "isJuniors": false,
     "floorJudgesCount": 1,
-    "allowBadJudge": true
+    "allowBadJudges": true
   },
   {
     "name": "(F)MW40 and G",
@@ -135,7 +135,7 @@
     "judgesCount": 11,
     "isJuniors": false,
     "floorJudgesCount": 1,
-    "allowBadJudge": true
+    "allowBadJudges": true
   },
   {
     "name": "(F)MM all",

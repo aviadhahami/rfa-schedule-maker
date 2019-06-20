@@ -30,7 +30,11 @@ prepareJudgesAndHeats();
 console.log(`calculating for ${heats.length} heats with ${judges.length} judges`);
 const isJudgedLast = ({judgedLast})=>!judgedLast;
 const isHead = ({isHead})=> isHead;
-const juniorsFilterGenerator = (isJuniors)=> ({isJunior})=> isJuniors ? !isJunior : true;
+const removeJuniorsFilterGenerator = (isJuniors)=> ({isJunior})=> isJuniors ? !isJunior : true;
+const getJuniorsFilterGenerator = (isJuniors)=> ({isJunior})=> isJuniors ? isJunior : false;
+const getBadJudgesFilterGenerator = (allowBadJudges)=> ({isBad})=> allowBadJudges ? isBad : false;
+const removeBadJudgesFilterGenerator = (allowBadJudges)=> ({isBad})=> allowBadJudges ? !isBad : true;
+
 const getRandom = arr => arr[Math.floor(Math.random() * (arr.length))];
 
 const getMinimums = arr => {
@@ -41,9 +45,23 @@ const getMinimums = arr => {
 };
 
 function getJudge(heat){
-	const {isJuniors, floorJudges, headJudge} = heat;
+	const {isJuniors, floorJudges, headJudge, allowBadJudges} = heat;
+	const badJudgesGetter = getBadJudgesFilterGenerator(allowBadJudges);
+	const removeJuniors = removeJuniorsFilterGenerator(isJuniors);
+	const badJudgesRemover = removeBadJudgesFilterGenerator(allowBadJudges);
 
-	const isJuniorsFilter = juniorsFilterGenerator(isJuniors);
+	if(heat.allowBadJudges){
+		return getRandom(
+			getMinimums(
+				badJudgesGetter(judges)
+			)
+		)
+	}
+
+
+
+
+
 	if(!headJudge || floorJudges.length < 2){
 		return getRandom(
 			getMinimums(judges
@@ -58,7 +76,7 @@ function getJudge(heat){
 				judges
 				// .filter(j=>!isHead(j))
 					.filter(isJudgedLast) // Last judge
-					.filter(isJuniorsFilter)
+					.filter(removeJuniors)
 			)
 		);
 
