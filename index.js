@@ -2,11 +2,13 @@ const fs = require('fs');
 const cloneDeep = require('lodash/cloneDeep');
 const sortBy = require('lodash/sortBy');
 const find = require('lodash/find');
+const flatten = require('lodash/flatten');
 const Judge = require('./classes/Judge');
 const Heat = require('./classes/Heat');
 
 const HEAD_JUDGES = ['aviad', 'aviram', 'eliraz', 'idan', 'lee-he','ohad'];
 const BAD_JUDGES = ['roni','shaked','shay','IdoJr'];
+const LANGS = [{name:'sergey', langs:['R']}];
 
 let judges = [];
 let heats = [];
@@ -16,7 +18,9 @@ function prepareJudgesAndHeats(){
 		const name = j.replace(/JR/gmi, '').toLowerCase();
 		const isJunior = j.includes('Jr');
 		const isHead = HEAD_JUDGES.includes(name);
-		return new Judge({ name, isHead, isJunior })
+		const isBad = BAD_JUDGES.includes(name);
+		const langs = flatten(LANGS.filter(lang=>lang.name === j).map((lang)=>lang.langs));
+		return new Judge({ name, isHead, isJunior, isBad, langs })
 	});
 
 	const heatsSource = require('./heats.json');
