@@ -6,7 +6,7 @@ const flatten = require('lodash/flatten');
 const Judge = require('./classes/Judge');
 const Heat = require('./classes/Heat');
 
-const HEAD_JUDGES = ['aviad', 'aviram', 'eliraz', 'idan', 'lee-he','ohad'];
+const HEAD_JUDGES = ['aviad','MichaelA', 'eliraz', 'idan', 'lee-he'];
 const BAD_JUDGES = ['roni','shaked','shay','IdoJr'];
 const LANGS = [{name:'sergey', langs:['R']}];
 

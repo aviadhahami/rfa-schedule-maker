@@ -8,7 +8,7 @@ module.exports = class Heat{
 		this.judges = [];
 		this.headJudge = undefined;
 		this.floorJudges = [];
-		this.floorJudgeCount = floorJudgeCount;
+		this.floorJudgesCount = floorJudgesCount;
 	}
 
 

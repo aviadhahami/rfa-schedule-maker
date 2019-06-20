@@ -1,5 +1,5 @@
 module.exports = class Judge{
-	constructor({ name, isBad = false, langs = [], isHead = false, availableSince = 0, isJunior = false, langs=[] }){
+	constructor({ name, isBad = false, isHead = false, availableSince = 0, isJunior = false, langs=[] }){
 		this.name = name;
 		this.availableSince = availableSince;
 		this.isJunior = isJunior;
