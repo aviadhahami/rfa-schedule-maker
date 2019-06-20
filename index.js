@@ -41,10 +41,10 @@ const getMinimums = arr => {
 };
 
 function getJudge(heat){
-	const {isJuniors, floorJudge, headJudge} = heat;
+	const {isJuniors, floorJudges, headJudge} = heat;
 
 	const isJuniorsFilter = juniorsFilterGenerator(isJuniors);
-	if(!headJudge || !floorJudge){
+	if(!headJudge || floorJudges.length < 2){
 		return getRandom(
 			getMinimums(judges
 				.filter(isHead)
@@ -83,8 +83,8 @@ for(let i = 0; i < heats.length; i++){
 		if(judge.isHead){
 			if(!heat.headJudge){
 				heat.headJudge = judge.name;
-			}else if(!heat.floorJudge){
-				heat.floorJudge = judge.name;
+			}else if(heat.floorJudges.length < 2){
+				heat.floorJudges.push(judge.name);
 				continue;
 			}
 		}
@@ -110,7 +110,7 @@ for(let i = 0; i < heats.length; i++){
 
 // console.log(JSON.stringify(judges, null, 4));
 // console.log();
-const cleanHeats = heats.map(({floorJudge, headJudge, judges, name})=>({floorJudge, headJudge, judges, name}));
+const cleanHeats = heats.map(({floorJudges, headJudge, judges, name})=>({floorJudges, headJudge, judges, name}));
 const cleanJudges = judges.map(({name, heats, totalHeats})=>({name, heats, totalHeats}));
 fs.writeFileSync('./dist/heats.results.json',JSON.stringify(cleanHeats, null, 4));
 fs.writeFileSync('./dist/judges.results.json',JSON.stringify(cleanJudges, null, 4));

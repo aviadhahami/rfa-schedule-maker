@@ -7,7 +7,7 @@ module.exports = class Heat{
 		this.langs = langs;
 		this.judges = [];
 		this.headJudge = undefined;
-		this.floorJudge = [];
+		this.floorJudges = [];
 		this.floorJudgeCount = floorJudgeCount;
 	}
 
@@ -17,6 +17,6 @@ module.exports = class Heat{
 	}
 
 	get isFull(){
-		return (this.judgesCount === this.judges.length) && this.headJudge && this.floorJudge;
+		return (this.judgesCount === this.judges.length) && this.headJudge && this.floorJudges;
 	}
 };
